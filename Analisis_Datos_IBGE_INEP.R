@@ -10,7 +10,7 @@
 
 rm(list = ls(all = TRUE))
 options(scipen = 999)
-setwd("S:/IBGE/DPE/COREN/Amostra Mestra/Gerenciamento/Pacotes SIPD/Dataton")
+setwd(".../Dataton")
 if ("curl" %in% rownames(installed.packages()) == FALSE)
 {
   install.packages(pkgs = "curl", dependencies = TRUE)
