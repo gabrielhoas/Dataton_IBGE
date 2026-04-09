@@ -88,7 +88,7 @@ library(package = "xlsx", verbose = TRUE)
 
 ################################################################################
 
-generate_urls <- function(base_url, source, year = NULL, reference = NULL, files = NULL) {
+generate_urls <- function(base_url, source, year = NULL) {
   if(source == "IBGE")
   {
     page <- read_html(base_url)
@@ -164,7 +164,7 @@ validate_urls <- function(urls) {
 
 ################################################################################
 
-download_files <- function(urls, path = tempdir()) {
+download_files <- function(urls, path) {
   dir.create(path, showWarnings = FALSE)
   
   options(timeout = 600)
