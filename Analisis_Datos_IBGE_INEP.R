@@ -10,7 +10,7 @@
 
 rm(list = ls(all = TRUE))
 options(scipen = 999)
-setwd(".../Dataton")
+setwd(".../Dataton") # Introduzca la ruta al directorio de referencia
 if ("curl" %in% rownames(installed.packages()) == FALSE)
 {
   install.packages(pkgs = "curl", dependencies = TRUE)
@@ -193,7 +193,7 @@ nm_municipio_referencia <- "São Paulo"
     censo_demografico_2022 <- full_join(x=censo_demografico_2022, y=setores_renda_responsavel, by=c("CD_setor"="CD_SETOR"))
     rm(setores_renda_responsavel)
     censo_demografico_2022 <- transform(censo_demografico_2022, CD_SETOR=CD_setor)
-    censo_demografico_2022 <- censo_demografico_2022[,c("CD_SETOR","V00001","V00002","V00003","V01500","V03000","V01194","V01197","V01198","V01199","V01200","V01201","V01202","V01203","V01204","V01205","V01206","V01207","V01208","V01317","V01318","V01319","V01320","V01321","V01031","V01041","V01006","V00656","V00047","V00048","V00049","V00050","V00051","V00052","V00900","V00901","V06004","V06005","V06001","V06002","V06003")]
+    censo_demografico_2022 <- censo_demografico_2022[,c("CD_SETOR","V00001","V00002","V00003","V01500","V03000","V01197","V01198","V01199","V01200","V01201","V01202","V01203","V01204","V01205","V01206","V01207","V01208","V01317","V01318","V01319","V01320","V01321","V01031","V01006","V06004")]
     setores_malha <- st_read(dsn=paste0(getwd(),"/IBGE_CENSO/BR_setores_CD2022.shp"))
     setores_malha <- setores_malha[substr(x=setores_malha$CD_SETOR, start=1, stop=7)==cd_municipio_referencia,]
     setores_proj <- st_transform(x=setores_malha, crs=31983)
@@ -229,7 +229,7 @@ nm_municipio_referencia <- "São Paulo"
     censo_demografico_2022_clases <- censo_demografico_2022_clases[(!is.na(censo_demografico_2022_clases$V00001) & censo_demografico_2022_clases$V00001>0 & censo_demografico_2022_clases$V00001!="X") | (!is.na(censo_demografico_2022_clases$V00002) & censo_demografico_2022_clases$V00002>0 & censo_demografico_2022_clases$V00002!="X") | (!is.na(censo_demografico_2022_clases$V00003) & censo_demografico_2022_clases$V00003>0 & censo_demografico_2022_clases$V00003!="X"),]
     censo_demografico_2022_clases <- censo_demografico_2022_clases[(!is.na(censo_demografico_2022_clases$V01500) & censo_demografico_2022_clases$V01500=="0") | (is.na(censo_demografico_2022_clases$V01500)),]
     censo_demografico_2022_clases <- censo_demografico_2022_clases[(!is.na(censo_demografico_2022_clases$V03000) & censo_demografico_2022_clases$V03000=="0") | (is.na(censo_demografico_2022_clases$V03000)),]
-    censo_demografico_2022_clases <- censo_demografico_2022_clases %>% mutate(across(c("V00001","V00002","V00003","V01500","V03000","V01194","V01197","V01198","V01199","V01200","V01201","V01202","V01203","V01204","V01205","V01206","V01207","V01208","V01317","V01318","V01319","V01320","V01321","V01031","V01041","V01006","V00656","V00047","V00048","V00049","V00050","V00051","V00052","V00900","V00901","V06004","V06005","V06001","V06002","V06003"), ~parse_number(na_if(na_if(na_if(str_replace_all(str_trim(.x), ",", "."), ""), "X"), "."))))
+    censo_demografico_2022_clases <- censo_demografico_2022_clases %>% mutate(across(c("V00001","V00002","V00003","V01500","V03000","V01197","V01198","V01199","V01200","V01201","V01202","V01203","V01204","V01205","V01206","V01207","V01208","V01317","V01318","V01319","V01320","V01321","V01031","V01006","V06004"), ~parse_number(na_if(na_if(na_if(str_replace_all(str_trim(.x), ",", "."), ""), "X"), "."))))
     censo_demografico_2022_clases <- transform(censo_demografico_2022_clases, MV01204=ifelse(is.na(V01204),0,V01204)/max((ifelse(is.na(V01197),0,V01197)+ifelse(is.na(V01198),0,V01198)+ifelse(is.na(V01199),0,V01199)+ifelse(is.na(V01200),0,V01200)+ifelse(is.na(V01201),0,V01201)+ifelse(is.na(V01202),0,V01202)+ifelse(is.na(V01203),0,V01203)+ifelse(is.na(V01204),0,V01204)+ifelse(is.na(V01205),0,V01205)+ifelse(is.na(V01206),0,V01206)+ifelse(is.na(V01207),0,V01207)+ifelse(is.na(V01208),0,V01208)),1))
     censo_demografico_2022_clases <- transform(censo_demografico_2022_clases, MV01318=(ifelse(is.na(V01318),0,V01318)+ifelse(is.na(V01320),0,V01320))/max((ifelse(is.na(V01317),0,V01317)+ifelse(is.na(V01318),0,V01318)+ifelse(is.na(V01319),0,V01319)+ifelse(is.na(V01320),0,V01320)+ifelse(is.na(V01321),0,V01321)),1))
     setores_creches <- read.csv(file=paste0(getwd(),"/No_creches_setores_2022_v3.csv"))
@@ -301,7 +301,7 @@ write.xlsx(x=censo_demografico_2022_clases, file=paste0(getwd(),"/censo_demograf
     censo_demografico_2022_distrito <- censo_demografico_2022_distrito[(!is.na(censo_demografico_2022_distrito$V00001) & censo_demografico_2022_distrito$V00001>0 & censo_demografico_2022_distrito$V00001!="X") | (!is.na(censo_demografico_2022_distrito$V00002) & censo_demografico_2022_distrito$V00002>0 & censo_demografico_2022_distrito$V00002!="X") | (!is.na(censo_demografico_2022_distrito$V00003) & censo_demografico_2022_distrito$V00003>0 & censo_demografico_2022_distrito$V00003!="X"),]
     censo_demografico_2022_distrito <- censo_demografico_2022_distrito[(!is.na(censo_demografico_2022_distrito$V01500) & censo_demografico_2022_distrito$V01500=="0") | (is.na(censo_demografico_2022_distrito$V01500)),]
     censo_demografico_2022_distrito <- censo_demografico_2022_distrito[(!is.na(censo_demografico_2022_distrito$V03000) & censo_demografico_2022_distrito$V03000=="0") | (is.na(censo_demografico_2022_distrito$V03000)),]
-    censo_demografico_2022_distrito <- censo_demografico_2022_distrito %>% mutate(across(c("V00001","V00002","V00003","V01500","V03000","V01194","V01197","V01198","V01199","V01200","V01201","V01202","V01203","V01204","V01205","V01206","V01207","V01208","V01317","V01318","V01319","V01320","V01321","V01031","V01041","V01006","V00656","V00047","V00048","V00049","V00050","V00051","V00052","V00900","V00901","V06004","V06005","V06001","V06002","V06003"), ~parse_number(na_if(na_if(na_if(str_replace_all(str_trim(.x), ",", "."), ""), "X"), "."))))
+    censo_demografico_2022_distrito <- censo_demografico_2022_distrito %>% mutate(across(c("V00001","V00002","V00003","V01500","V03000","V01197","V01198","V01199","V01200","V01201","V01202","V01203","V01204","V01205","V01206","V01207","V01208","V01317","V01318","V01319","V01320","V01321","V01031","V01006","V06004"), ~parse_number(na_if(na_if(na_if(str_replace_all(str_trim(.x), ",", "."), ""), "X"), "."))))
     censo_demografico_2022_distrito <- transform(censo_demografico_2022_distrito, CD_DIST=as.numeric(substr(x=CD_SETOR, start=1, stop=9)))
     censo_demografico_2022_distrito <- censo_demografico_2022_distrito %>%
       group_by(CD_DIST) %>%
@@ -310,7 +310,6 @@ write.xlsx(x=censo_demografico_2022_clases, file=paste0(getwd(),"/censo_demograf
                 V00003 = sum(V00003, na.rm=TRUE),
                 V01500 = sum(V01500, na.rm=TRUE),
                 V03000 = sum(V03000, na.rm=TRUE),
-                V01194 = sum(V01194, na.rm=TRUE),
                 V01197 = sum(V01197, na.rm=TRUE),
                 V01198 = sum(V01198, na.rm=TRUE),
                 V01199 = sum(V01199, na.rm=TRUE),
@@ -329,22 +328,8 @@ write.xlsx(x=censo_demografico_2022_clases, file=paste0(getwd(),"/censo_demograf
                 V01320 = sum(V01320, na.rm=TRUE),
                 V01321 = sum(V01321, na.rm=TRUE),
                 V01031 = sum(V01031, na.rm=TRUE),
-                V01041 = sum(V01041, na.rm=TRUE),
                 V01006 = sum(V01006, na.rm=TRUE),
-                V00656 = sum(V00656, na.rm=TRUE),
-                V00047 = sum(V00047, na.rm=TRUE),
-                V00048 = sum(V00048, na.rm=TRUE),
-                V00049 = sum(V00049, na.rm=TRUE),
-                V00050 = sum(V00050, na.rm=TRUE),
-                V00051 = sum(V00051, na.rm=TRUE),
-                V00052 = sum(V00052, na.rm=TRUE),
-                V00900 = sum(V00900, na.rm=TRUE),
-                V00901 = sum(V00901, na.rm=TRUE),
-                V06004 = mean(V06004, na.rm=TRUE),
-                V06005 = mean(V06005, na.rm=TRUE),
-                V06001 = sum(V06001, na.rm=TRUE),
-                V06002 = sum(V06002, na.rm=TRUE),
-                V06003 = mean(V06003, na.rm=TRUE))
+                V06004 = mean(V06004, na.rm=TRUE))
     distritos_malha <- st_read(dsn=paste0(getwd(),"/IBGE_CENSO/BR_distritos_CD2022.shp"))
     distritos_proj <- st_transform(x=distritos_malha, crs=31983)
     pontos <- st_point_on_surface(x=distritos_proj)

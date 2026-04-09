@@ -10,7 +10,7 @@
 
 rm(list = ls(all = TRUE))
 options(scipen = 999)
-setwd(".../Dataton")
+setwd(".../Dataton") # Introduzca la ruta al directorio de referencia
 if ("curl" %in% rownames(installed.packages()) == FALSE)
 {
   install.packages(pkgs = "curl", dependencies = TRUE)
