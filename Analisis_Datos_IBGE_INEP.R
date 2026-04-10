@@ -10,7 +10,7 @@
 
 rm(list = ls(all = TRUE))
 options(scipen = 999)
-setwd(".../Dataton") # Introduzca la ruta al directorio de referencia
+setwd(".../Dataton")
 if ("curl" %in% rownames(installed.packages()) == FALSE)
 {
   install.packages(pkgs = "curl", dependencies = TRUE)
@@ -211,6 +211,36 @@ nm_municipio_referencia <- "São Paulo"
     write.xlsx(x=censo_demografico_2022, file=paste0(getwd(),"/censo_demografico_2022.xlsx"), sheetName="censo_demografico_2022", col.names=TRUE, row.names=FALSE)
   }
 }
+
+# | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+# | Variable | Descripción                                                                                                                                                                                       |
+# | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+# | V00001   | Viviendas particulares permanentes ocupadas                                                                                                                                                       |
+# | V00002   | Viviendas particulares improvisadas ocupadas                                                                                                                                                      |
+# | V00003   | Unidades de vivienda en viviendas colectivas con residente                                                                                                                                        |
+# | V01500   | Vivienda con al menos un residente indígena                                                                                                                                                       |
+# | V03000   | Vivienda con al menos un residente quilombola                                                                                                                                                     |
+# | V01197   | Vivienda con persona responsable y cónyuge(s) sin hijos, sexo de la persona responsable de la vivienda es masculino                                                                               |
+# | V01198   | Vivienda con persona responsable y cónyuge(s) sin hijos, sexo de la persona responsable de la vivienda es femenino                                                                                |
+# | V01199   | Vivienda con persona responsable y cónyuge con hijo(s) de ambos únicamente, sexo de la persona responsable de la vivienda es masculino                                                            |
+# | V01200   | Vivienda con persona responsable y cónyuge con hijo(s) de ambos únicamente, sexo de la persona responsable de la vivienda es femenino                                                             |
+# | V01201   | Vivienda con persona responsable y cónyuge(s) con al menos un hijo únicamente de la persona responsable o únicamente de un(a) cónyuge, sexo de la persona responsable de la vivienda es masculino |
+# | V01202   | Vivienda con persona responsable y cónyuge(s) con al menos un hijo únicamente de la persona responsable o únicamente de un(a) cónyuge, sexo de la persona responsable de la vivienda es femenino  |
+# | V01203   | Vivienda con persona responsable sin cónyuge con hijo(s) y/o hijastro(s), sexo de la persona responsable de la vivienda es masculino                                                              |
+# | V01204   | Vivienda con persona responsable sin cónyuge con hijo(s) y/o hijastro(s), sexo de la persona responsable de la vivienda es femenino                                                               |
+# | V01205   | Vivienda con otros tipos de composición, sexo de la persona responsable de la vivienda es masculino                                                                                               |
+# | V01206   | Vivienda con otros tipos de composición, sexo de la persona responsable de la vivienda es femenino                                                                                                |
+# | V01207   | Unidad en vivienda colectiva con residente, sexo de la persona responsable de la vivienda es masculino                                                                                            |
+# | V01208   | Unidad en vivienda colectiva con residente, sexo de la persona responsable de la vivienda es femenino                                                                                             |
+# | V01317   | Color o raza es blanca                                                                                                                                                                            |
+# | V01318   | Color o raza es negra                                                                                                                                                                             |
+# | V01319   | Color o raza es amarilla                                                                                                                                                                          |
+# | V01320   | Color o raza es mestiza                                                                                                                                                                             |
+# | V01321   | Color o raza es indígena                                                                                                                                                                          |
+# | V01031   | 0 a 4 años                                                                                                                                                                                        |
+# | V01006   | Cantidad de residentes                                                                                                                                                                            |
+# | V06004   | Valor del ingreso nominal medio mensual de las personas responsables con ingresos por viviendas particulares permanentes ocupadas                                                                 |
+# | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 ################################################################################
 
