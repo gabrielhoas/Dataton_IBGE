@@ -235,7 +235,7 @@ nm_municipio_referencia <- "São Paulo"
 # | V01317   | Color o raza es blanca                                                                                                                                                                            |
 # | V01318   | Color o raza es negra                                                                                                                                                                             |
 # | V01319   | Color o raza es amarilla                                                                                                                                                                          |
-# | V01320   | Color o raza es mestiza                                                                                                                                                                             |
+# | V01320   | Color o raza es mestiza                                                                                                                                                                           |
 # | V01321   | Color o raza es indígena                                                                                                                                                                          |
 # | V01031   | 0 a 4 años                                                                                                                                                                                        |
 # | V01006   | Cantidad de residentes                                                                                                                                                                            |
